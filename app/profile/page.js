@@ -1,18 +1,19 @@
 "use client";
 
-import Link from "next/link";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import AuthGuard from "@/components/AuthGuard";
 import { useAuth } from "@/lib/auth-context";
-import { LogOut } from "lucide-react";
+import { LogOut, Camera } from "lucide-react";
 import toast from "react-hot-toast";
 
 function ProfileContent() {
-  const { user, updateUser, signOut } = useAuth();
+  const { user, updateUser, updateProfilePicture, signOut } = useAuth();
   const router = useRouter();
+  const fileInputRef = useRef(null);
   const [name, setName] = useState(user?.name || "");
   const [loading, setLoading] = useState(false);
+  const [picLoading, setPicLoading] = useState(false);
 
   const handleSignOut = async () => {
     await signOut();
@@ -37,6 +38,35 @@ function ProfileContent() {
     }
   };
 
+  const handlePicClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handlePicChange = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast.error("দয়া করে ছবির ফাইল নির্বাচন করুন");
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error("ছবি ২ MB-এর বেশি হতে পারবে না");
+      return;
+    }
+
+    setPicLoading(true);
+    try {
+      await updateProfilePicture(file);
+      toast.success("প্রোফাইল পিকচার আপডেট হয়েছে!");
+    } catch (err) {
+      toast.error(err.message || "ছবি আপডেট ব্যর্থ হয়েছে");
+    } finally {
+      setPicLoading(false);
+    }
+  };
+
   if (!user) return null;
 
   return (
@@ -56,8 +86,41 @@ function ProfileContent() {
         <div className="bg-bazar-card rounded-2xl border border-gray-200/80 p-6 md:p-10 mb-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div className="flex items-center gap-5">
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-[#edf3ea] rounded-2xl flex items-center justify-center text-4xl md:text-5xl">
-                👤
+              <div className="relative group">
+                <div
+                  onClick={handlePicClick}
+                  className="w-20 h-20 md:w-24 md:h-24 bg-[#edf3ea] rounded-2xl flex items-center justify-center text-4xl md:text-5xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-dhaner-shobuj/40 transition-colors"
+                >
+                  {user.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={user.image}
+                      alt="প্রোফাইল"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span>👤</span>
+                  )}
+                </div>
+                <button
+                  onClick={handlePicClick}
+                  className="absolute bottom-0 right-0 w-8 h-8 bg-dhaner-shobuj text-white rounded-full flex items-center justify-center shadow-md hover:bg-emerald-700 transition-colors"
+                  title="প্রোফাইল পিকচার পরিবর্তন করুন"
+                >
+                  <Camera size={15} />
+                </button>
+                {picLoading && (
+                  <div className="absolute inset-0 bg-black/30 rounded-2xl flex items-center justify-center">
+                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePicChange}
+                  className="hidden"
+                />
               </div>
               <div>
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
@@ -65,6 +128,9 @@ function ProfileContent() {
                 </h2>
                 <p className="text-gray-500 mt-1 text-base md:text-lg">
                   {user.email}
+                </p>
+                <p className="text-xs text-gray-400 mt-2">
+                  প্রোফাইল পিকচার পরিবর্তন করতে ছবিতে ক্লিক করুন
                 </p>
               </div>
             </div>

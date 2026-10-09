@@ -54,8 +54,13 @@ export default function Navbar() {
                   onClick={() => setProfileOpen(!profileOpen)}
                   className="flex items-center gap-2 bg-white border border-gray-200 hover:border-dhaner-shobuj/50 px-3 py-2 rounded-xl transition-colors"
                 >
-                  <div className="w-8 h-8 bg-dhaner-shobuj/10 rounded-full flex items-center justify-center text-dhaner-shobuj">
-                    <User size={16} />
+                  <div className="w-8 h-8 bg-dhaner-shobuj/10 rounded-full flex items-center justify-center text-dhaner-shobuj overflow-hidden">
+                    {user.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={user.image} alt="" className="w-full h-full object-cover" />
+                    ) : (
+                      <User size={16} />
+                    )}
                   </div>
                   <span className="text-sm font-medium text-gray-700 max-w-[120px] truncate">
                     {user.name}
@@ -64,11 +69,21 @@ export default function Navbar() {
 
                 {profileOpen && (
                   <div className="absolute right-0 mt-2 w-72 bg-bazar-card rounded-2xl shadow-lg border border-gray-200 py-4 z-50">
-                    <div className="px-5 pb-4 border-b border-gray-200">
-                      <p className="text-xl font-bold text-gray-800">
-                        {user.name || "ব্যবহারকারী"}
-                      </p>
-                      <p className="text-gray-500 mt-0.5">{user.email}</p>
+                    <div className="px-5 pb-4 border-b border-gray-200 flex items-center gap-3">
+                      <div className="w-12 h-12 bg-[#edf3ea] rounded-xl flex items-center justify-center text-2xl overflow-hidden flex-shrink-0">
+                        {user.image ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={user.image} alt="" className="w-full h-full object-cover" />
+                        ) : (
+                          <span>👤</span>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-lg font-bold text-gray-800 truncate">
+                          {user.name || "ব্যবহারকারী"}
+                        </p>
+                        <p className="text-gray-500 mt-0.5 text-sm truncate">{user.email}</p>
+                      </div>
                     </div>
                     <div className="pt-2">
                       <Link
