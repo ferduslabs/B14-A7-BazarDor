@@ -24,7 +24,7 @@ body {
   font-family: "Hind Siliguri", "Noto Sans Bengali", system-ui, -apple-system,
     sans-serif;
   color: rgb(var(--foreground-rgb));
-  background-color: #eef1e4;
+  background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -21,71 +21,68 @@ export default function Hero() {
     <section className="relative pt-6 pb-2">
       <div className="container mx-auto px-4">
         <div className="relative bg-bazar-card rounded-3xl overflow-hidden border border-gray-300/70">
-          <div className="grid md:grid-cols-5 gap-6 items-center p-6 md:p-10 lg:px-12 lg:py-10">
+          <div className="grid md:grid-cols-5 gap-6 items-center p-6 md:p-10 lg:px-14 lg:py-12">
             <div className="md:col-span-3 relative z-10">
               <p className="inline-block text-dhaner-shobuj font-semibold text-sm md:text-base bg-dhaner-shobuj/10 px-4 py-1.5 rounded-full mb-5">
                 {currentDate}
               </p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-800 leading-tight mb-4 md:mb-6">
-                আজকের বাজারের দাম
-                <br />
-                এক নজরে
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 leading-tight mb-4 md:mb-5">
+                আজকের বাজারের দাম এক নজরে
               </h1>
-              <p className="text-sm md:text-base lg:text-lg text-gray-500 mb-6 md:mb-8 max-w-xl leading-relaxed">
+              <p className="text-sm md:text-base text-gray-500 mb-6 md:mb-8 max-w-xl leading-relaxed">
                 চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম —
                 বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বোচ্চ এবং দামের
                 পরিবর্তন এক জায়গায়।
               </p>
               <button
                 onClick={scrollToProducts}
-                className="bg-dhaner-shobuj hover:bg-emerald-700 text-white font-bold px-7 md:px-8 py-3.5 md:py-4 rounded-2xl transition-all duration-200 text-sm md:text-base shadow-lg shadow-emerald-900/40 border-b-4 border-emerald-800 hover:border-emerald-900 active:border-b-2 active:translate-y-0.5 active:shadow-md"
+                className="bg-dhaner-shobuj hover:bg-emerald-700 text-white font-semibold px-7 md:px-9 py-3.5 md:py-4 rounded-2xl transition-all duration-200 text-sm md:text-base shadow-md shadow-emerald-900/30 border-b-4 border-emerald-800 hover:border-emerald-900 active:border-b-2 active:translate-y-0.5 active:shadow-sm"
               >
                 সব পণ্য দেখুন
               </button>
             </div>
 
             <div className="md:col-span-2 relative flex justify-center md:justify-end">
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72">
-                {/* Fruit Basket Illustration */}
-                <svg viewBox="0 0 200 200" className="w-full h-full">
-                  {/* Shadow */}
-                  <ellipse cx="100" cy="185" rx="70" ry="10" fill="#d1d5db" opacity="0.4" />
+              <div className="relative w-48 h-40 sm:w-56 sm:h-48 md:w-64 md:h-56 lg:w-72 lg:h-64">
+                <svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                  {/* ছায়া */}
+                  <ellipse cx="160" cy="255" rx="110" ry="14" fill="#e5e7eb" opacity="0.6"/>
+                  {/* ঝুড়ি */}
+                  <path d="M60 170 L70 240 Q75 252 90 252 L230 252 Q245 252 250 240 L260 170 Z" fill="#c05621"/>
+                  <rect x="55" y="158" width="210" height="22" rx="6" fill="#92400e"/>
+                  {/* ঝুড়ির কাঠির লাইন */}
+                  <line x1="95" y1="180" x2="100" y2="252" stroke="#7c2d12" strokeWidth="4" strokeLinecap="round"/>
+                  <line x1="135" y1="180" x2="138" y2="252" stroke="#7c2d12" strokeWidth="4" strokeLinecap="round"/>
+                  <line x1="175" y1="180" x2="178" y2="252" stroke="#7c2d12" strokeWidth="4" strokeLinecap="round"/>
+                  <line x1="215" y1="180" x2="218" y2="252" stroke="#7c2d12" strokeWidth="4" strokeLinecap="round"/>
+                  <line x1="245" y1="180" x2="248" y2="252" stroke="#7c2d12" strokeWidth="4" strokeLinecap="round"/>
 
-                  {/* Basket body */}
-                  <rect x="45" y="115" width="110" height="65" rx="8" fill="#c2410c" />
-                  <rect x="45" y="115" width="110" height="12" rx="4" fill="#92400e" />
+                  {/* ফল ১: বেগুনি জাম */}
+                  <circle cx="100" cy="140" r="26" fill="#8b5cf6"/>
+                  <path d="M100 114 Q96 108 92 112" stroke="#6d28d9" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  <ellipse cx="90" cy="132" rx="6" ry="9" fill="#a78bfa" opacity="0.5"/>
 
-                  {/* Basket vertical lines */}
-                  <line x1="60" y1="127" x2="60" y2="180" stroke="#92400e" strokeWidth="3" strokeLinecap="round" />
-                  <line x1="85" y1="127" x2="85" y2="180" stroke="#92400e" strokeWidth="3" strokeLinecap="round" />
-                  <line x1="110" y1="127" x2="110" y2="180" stroke="#92400e" strokeWidth="3" strokeLinecap="round" />
-                  <line x1="135" y1="127" x2="135" y2="180" stroke="#92400e" strokeWidth="3" strokeLinecap="round" />
+                  {/* ফল ২: লাল আপেল */}
+                  <circle cx="145" cy="125" r="34" fill="#ef4444"/>
+                  <path d="M145 91 Q138 82 132 86" stroke="#7f1d1d" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  <ellipse cx="128" cy="115" rx="8" ry="14" fill="#fca5a5" opacity="0.5"/>
+                  <path d="M145 91 Q155 82 162 88" stroke="#16a34a" strokeWidth="3" fill="none" strokeLinecap="round"/>
 
-                  {/* Basket handle */}
-                  <path d="M 70 115 Q 100 85 130 115" stroke="#92400e" strokeWidth="5" fill="none" strokeLinecap="round" />
+                  {/* ফল ৩: কমলা */}
+                  <circle cx="200" cy="135" r="22" fill="#f97316"/>
+                  <path d="M200 113 Q204 107 210 110" stroke="#16a34a" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  <ellipse cx="190" cy="128" rx="5" ry="8" fill="#fdba74" opacity="0.6"/>
 
-                  {/* Apple (red) */}
-                  <circle cx="75" cy="90" r="22" fill="#ef4444" />
-                  <ellipse cx="68" cy="82" rx="6" ry="8" fill="#fca5a5" opacity="0.5" />
-                  <path d="M 75 68 Q 78 60 85 58" stroke="#16a34a" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                  {/* ফল ৪: বড় সবুজ */}
+                  <circle cx="235" cy="110" r="36" fill="#22c55e"/>
+                  <path d="M235 74 Q230 64 222 62" stroke="#166534" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  <path d="M235 74 Q248 62 258 68" stroke="#15803d" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  <ellipse cx="218" cy="100" rx="9" ry="16" fill="#86efac" opacity="0.5"/>
 
-                  {/* Grapes (purple) */}
-                  <circle cx="50" cy="100" r="14" fill="#a855f7" />
-                  <path d="M 50 86 Q 52 78 58 75" stroke="#16a34a" strokeWidth="2" fill="none" strokeLinecap="round" />
-
-                  {/* Green fruit */}
-                  <circle cx="125" cy="75" r="25" fill="#22c55e" />
-                  <ellipse cx="118" cy="67" rx="7" ry="10" fill="#86efac" opacity="0.5" />
-                  <path d="M 125 50 Q 128 40 138 38" stroke="#16a34a" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-                  <path d="M 138 38 Q 145 42 148 50" stroke="#16a34a" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-
-                  {/* Orange 1 */}
-                  <circle cx="100" cy="100" r="16" fill="#f97316" />
-                  <path d="M 100 84 Q 102 78 107 76" stroke="#16a34a" strokeWidth="2" fill="none" strokeLinecap="round" />
-
-                  {/* Orange 2 */}
-                  <circle cx="155" cy="100" r="15" fill="#fb923c" />
-                  <path d="M 155 85 Q 157 79 162 77" stroke="#16a34a" strokeWidth="2" fill="none" strokeLinecap="round" />
+                  {/* ফল ৫: কমলা ২ */}
+                  <circle cx="275" cy="135" r="22" fill="#f59e0b"/>
+                  <path d="M275 113 Q280 107 286 111" stroke="#16a34a" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  <ellipse cx="266" cy="128" rx="5" ry="8" fill="#fcd34d" opacity="0.6"/>
                 </svg>
               </div>
             </div>
