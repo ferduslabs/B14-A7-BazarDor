@@ -63,31 +63,30 @@ export default function Navbar() {
                 </button>
 
                 {profileOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
-                    <Link
-                      href="/profile"
-                      onClick={() => setProfileOpen(false)}
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                    >
-                      <User size={16} />
-                      প্রোফাইল
-                    </Link>
-                    <Link
-                      href="/update-profile"
-                      onClick={() => setProfileOpen(false)}
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                    >
-                      <Settings size={16} />
-                      এডিট করুন
-                    </Link>
-                    <div className="border-t border-gray-100 my-1"></div>
-                    <button
-                      onClick={handleSignOut}
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
-                    >
-                      <LogOut size={16} />
-                      সাইন আউট
-                    </button>
+                  <div className="absolute right-0 mt-2 w-72 bg-bazar-card rounded-2xl shadow-lg border border-gray-200 py-4 z-50">
+                    <div className="px-5 pb-4 border-b border-gray-200">
+                      <p className="text-xl font-bold text-gray-800">
+                        {user.name || "ব্যবহারকারী"}
+                      </p>
+                      <p className="text-gray-500 mt-0.5">{user.email}</p>
+                    </div>
+                    <div className="pt-2">
+                      <Link
+                        href="/profile"
+                        onClick={() => setProfileOpen(false)}
+                        className="flex items-center gap-3 px-5 py-3 text-gray-800 hover:bg-gray-100/60 text-lg font-medium"
+                      >
+                        <span className="text-2xl">👤</span>
+                        আমার প্রোফাইল
+                      </Link>
+                      <button
+                        onClick={handleSignOut}
+                        className="flex items-center gap-3 px-5 py-3 text-red-600 hover:bg-red-50 w-full text-left text-lg font-medium"
+                      >
+                        <span className="text-2xl">↩</span>
+                        সাইন আউট
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
