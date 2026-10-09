@@ -30,8 +30,11 @@ export default function RootLayout({ children }) {
     <html lang="bn">
       <body className="min-h-screen flex flex-col bg-bazar-bg">
         <AuthProvider>
-          <Navbar />
-          <PriceTicker products={products} />
+          {/* Sticky header: navbar + ticker stay on top */}
+          <div className="sticky top-0 z-50 bg-bazar-bg/95 backdrop-blur-sm border-b border-gray-200/60">
+            <Navbar />
+            <PriceTicker products={products} />
+          </div>
           <main className="flex-1">{children}</main>
           <Footer />
           <Toaster
