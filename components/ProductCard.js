@@ -17,12 +17,12 @@ export default function ProductCard({ product }) {
 
   return (
     <Link href={`/product/${product.slug}`}>
-      <div className="bg-bazar-card rounded-2xl border border-gray-200 hover:border-dhaner-shobuj/40 hover:shadow-md transition-all duration-300 p-4 group cursor-pointer h-full">
+      <div className="bg-bazar-card rounded-2xl border border-gray-200 hover:border-dhaner-shobuj/40 hover:shadow-sm transition-all duration-200 p-4 md:p-5 group cursor-pointer h-full">
         <div className="flex items-start gap-3">
-          <div className="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-2xl bg-white/60 flex items-center justify-center text-2xl md:text-3xl group-hover:scale-110 transition-transform duration-300">
+          <div className="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-2xl bg-white/70 flex items-center justify-center text-2xl md:text-3xl group-hover:scale-105 transition-transform duration-200">
             {product.image}
           </div>
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 pt-0.5">
             <h3 className="font-semibold text-gray-800 text-base md:text-lg leading-tight truncate">
               {product.nameBn}
             </h3>
@@ -32,11 +32,11 @@ export default function ProductCard({ product }) {
           </div>
         </div>
 
-        <div className="flex items-end justify-between mt-4 pt-3 border-t border-gray-200/50">
+        <div className="flex items-end justify-between mt-4 pt-3 border-t border-gray-200/60">
           <div>
             <p className="text-xs text-gray-400 mb-1">আজকের দাম</p>
             <p className="text-xl md:text-2xl font-bold text-gray-800 leading-none">
-              ৳{toBn(product.today)} <span className="text-base font-medium">টাকা</span>
+              {toBn(product.today)} <span className="text-base font-medium">টাকা</span>
             </p>
           </div>
           <span className={`text-xs font-semibold px-2.5 py-1.5 rounded-full ${changeBg} flex-shrink-0`}>
