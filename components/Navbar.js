@@ -29,7 +29,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-gray-200/50">
+    <header className="sticky top-0 z-50 bg-bazar-bg/95 backdrop-blur-sm border-b border-gray-200/60">
       <div className="container mx-auto px-4">
         {/* Top row */}
         <div className="flex items-center justify-between h-16 md:h-20">

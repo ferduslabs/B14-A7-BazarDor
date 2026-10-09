@@ -9,6 +9,8 @@ module.exports = {
       colors: {
         cream: "#faf7f2",
         "cream-dark": "#f5efe6",
+        "bazar-bg": "#eef1e4",
+        "bazar-card": "#f6f7f0",
         "dhaner-shobuj": "#059669",
         "dhaner-shobuj-light": "#10b981",
         amber: "#f97316",

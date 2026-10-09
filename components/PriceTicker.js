@@ -6,7 +6,7 @@ export default function PriceTicker({ products }) {
   const tickerItems = [...products, ...products];
 
   return (
-    <div className="bg-white border-y border-gray-100 overflow-hidden py-2">
+    <div className="bg-bazar-card border-y border-gray-200/60 overflow-hidden py-2">
       <div className="flex animate-marquee whitespace-nowrap">
         {tickerItems.map((product, idx) => {
           const { dir, pct } = product.change;
@@ -20,19 +20,19 @@ export default function PriceTicker({ products }) {
           return (
             <div
               key={`${product.id}-${idx}`}
-              className="flex items-center gap-2 px-6 text-sm"
+              className="flex items-center gap-2 px-5 text-xs"
             >
-              <span className="text-lg">{product.image}</span>
+              <span className="text-base">{product.image}</span>
               <span className="font-medium text-gray-700">
                 {product.nameBn}
               </span>
-              <span className="font-semibold text-gray-900">
-                ৳{toBn(product.today)}
+              <span className="text-gray-500">
+                ৳{toBn(product.today)}/একক
               </span>
-              <span className={`font-medium ${color}`}>
+              <span className={`font-semibold ${color}`}>
                 {icon} {toBn(pct)}%
               </span>
-              <span className="text-gray-300 mx-2">|</span>
+              <span className="text-gray-300 mx-1">•</span>
             </div>
           );
         })}

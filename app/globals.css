@@ -6,8 +6,6 @@
 
 :root {
   --foreground-rgb: 31, 41, 55;
-  --background-start-rgb: 250, 247, 242;
-  --background-end-rgb: 250, 247, 242;
 }
 
 * {
@@ -26,7 +24,7 @@ body {
   font-family: "Hind Siliguri", "Noto Sans Bengali", system-ui, -apple-system,
     sans-serif;
   color: rgb(var(--foreground-rgb));
-  background-color: #faf7f2;
+  background-color: #eef1e4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -43,16 +41,16 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f5efe6;
+  background: #e2e7d5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: #b5bda0;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: #8d9778;
 }
 
 /* Selection */
