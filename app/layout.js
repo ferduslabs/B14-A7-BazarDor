@@ -28,7 +28,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="bn">
-      <body className="min-h-screen flex flex-col bg-cream">
+      <body className="min-h-screen flex flex-col bg-bazar-bg">
         <AuthProvider>
           <Navbar />
           <PriceTicker products={products} />
