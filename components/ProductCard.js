@@ -17,9 +17,9 @@ export default function ProductCard({ product }) {
 
   return (
     <Link href={`/product/${product.slug}`}>
-      <div className="bg-bazar-card rounded-2xl border border-gray-200 hover:border-dhaner-shobuj/40 hover:shadow-sm transition-all duration-200 p-4 md:p-5 group cursor-pointer h-full">
+      <div className="bg-bazar-card rounded-2xl border border-gray-200/70 hover:border-dhaner-shobuj/30 hover:shadow-sm transition-all duration-200 p-4 md:p-5 group cursor-pointer h-full">
         <div className="flex items-start gap-3">
-          <div className="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-2xl bg-white/70 flex items-center justify-center text-2xl md:text-3xl group-hover:scale-105 transition-transform duration-200">
+          <div className="w-11 h-11 md:w-12 md:h-12 flex-shrink-0 rounded-2xl bg-white flex items-center justify-center text-2xl md:text-2xl group-hover:scale-105 transition-transform duration-200">
             {product.image}
           </div>
           <div className="flex-1 min-w-0 pt-0.5">
@@ -32,7 +32,7 @@ export default function ProductCard({ product }) {
           </div>
         </div>
 
-        <div className="flex items-end justify-between mt-4 pt-3 border-t border-gray-200/60">
+        <div className="flex items-end justify-between mt-4 pt-3 border-t border-gray-200/50">
           <div>
             <p className="text-xs text-gray-400 mb-1">আজকের দাম</p>
             <p className="text-xl md:text-2xl font-bold text-gray-800 leading-none">
