@@ -40,8 +40,8 @@ function SignUpContent() {
     setLoading(true);
     try {
       await signUp({ name, email, password });
-      toast.success("অ্যাকাউন্ট তৈরি হয়েছে! স্বাগতম!");
-      router.push(redirect);
+      toast.success("অ্যাকাউন্ট তৈরি হয়েছে! সাইন ইন করুন।");
+      router.push("/signin");
     } catch (err) {
       toast.error(err.message || "রেজিস্ট্রেশন ব্যর্থ হয়েছে");
     } finally {
