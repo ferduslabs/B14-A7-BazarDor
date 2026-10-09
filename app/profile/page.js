@@ -119,7 +119,7 @@ function ProfileContent() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4">
           <div className="bg-white rounded-xl p-5 text-center border border-gray-100">
-            <p className="text-2xl font-bold text-dhaner-shobuj">৩৭+</p>
+            <p className="text-2xl font-bold text-dhaner-shobuj">৩৩</p>
             <p className="text-xs text-gray-500 mt-1">পণ্য দেখা হয়েছে</p>
           </div>
           <div className="bg-white rounded-xl p-5 text-center border border-gray-100">

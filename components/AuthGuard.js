@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 import { SkeletonGrid } from "./SkeletonCard";
+import toast from "react-hot-toast";
 
 export default function AuthGuard({ children }) {
   const { user, loading } = useAuth();
@@ -11,6 +12,7 @@ export default function AuthGuard({ children }) {
 
   useEffect(() => {
     if (!loading && !user) {
+      toast.error("এই পেজটি দেখতে লগইন করুন");
       router.push("/signin?redirect=" + encodeURIComponent(window.location.pathname));
     }
   }, [user, loading, router]);

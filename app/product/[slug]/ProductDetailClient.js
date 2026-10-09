@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import AuthGuard from "@/components/AuthGuard";
-import { getProductBySlug, categories } from "@/lib/fallback-data";
+import { getProductBySlug, getCategoryBySlug, categories } from "@/lib/fallback-data";
 import { toBn, formatUnit } from "@/lib/bangla";
 import { ArrowLeft, TrendingUp, TrendingDown, Minus } from "lucide-react";
 
 export default function ProductDetailClient({ slug }) {
   const product = getProductBySlug(slug);
+  const category = product ? getCategoryBySlug(product.category) : null;
 
   if (!product) {
     return (
@@ -37,6 +38,10 @@ export default function ProductDetailClient({ slug }) {
     ? Math.round(allMarkets.reduce((sum, m) => sum + (m.min + m.max) / 2, 0) / allMarkets.length)
     : product.today;
 
+  // Approximate last week and last month from change trend
+  const lastWeek = Math.round(product.yesterday * (1 + (product.today - product.yesterday) / product.yesterday * 0.6));
+  const lastMonth = Math.round(product.yesterday * (1 + (product.today - product.yesterday) / product.yesterday * 2.5));
+
   const changeColor =
     dir === "up" ? "text-price-up" : dir === "down" ? "text-price-down" : "text-price-flat";
   const changeBg =
@@ -47,28 +52,30 @@ export default function ProductDetailClient({ slug }) {
       : "bg-gray-50 border-gray-200";
 
   return (
-    <div className="container mx-auto px-4 py-10">
+    <div className="container mx-auto px-4 py-8">
       {/* Back link */}
       <Link
         href={`/category/${product.category}`}
         className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-dhaner-shobuj mb-6 transition-colors"
       >
         <ArrowLeft size={16} />
-        {product.categoryNameBn} তে ফিরে যান
+        {category?.nameBn || product.category} তে ফিরে যান
       </Link>
 
       {/* Product Header */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-10 mb-8">
+      <div className="bg-bazar-card rounded-2xl border border-gray-200 p-6 md:p-10 mb-8">
         <div className="grid md:grid-cols-2 gap-8 items-start">
           <div className="flex items-start gap-6">
-            <div className="text-7xl md:text-8xl">{product.image}</div>
-            <div>
+            <div className="w-24 h-24 md:w-32 md:h-32 bg-[#edf3ea] rounded-2xl flex items-center justify-center text-5xl md:text-6xl">
+              {product.image}
+            </div>
+            <div className="flex-1 pt-1">
               <div className="flex flex-wrap gap-2 mb-3">
                 <Link
                   href={`/category/${product.category}`}
                   className="inline-flex items-center gap-1 bg-dhaner-shobuj/10 text-dhaner-shobuj text-xs font-medium px-3 py-1 rounded-full"
                 >
-                  {product.categoryIcon} {product.categoryNameBn}
+                  {category?.icon || "📦"} {category?.nameBn || product.category}
                 </Link>
                 <span className={`inline-flex items-center gap-1 text-xs font-medium px-3 py-1 rounded-full border ${changeBg} ${changeColor}`}>
                   {dir === "up" && <TrendingUp size={12} />}
@@ -77,15 +84,15 @@ export default function ProductDetailClient({ slug }) {
                   {dir === "up" ? "বাড়ছে" : dir === "down" ? "কমছে" : "অপরিবর্তিত"}
                 </span>
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-2">
                 {product.nameBn}
               </h1>
-              <p className="text-gray-500 mb-4">{formatUnit(product.unit)}</p>
+              <p className="text-gray-500 mb-4 text-sm md:text-base">{formatUnit(product.unit)}</p>
               <div className="flex items-baseline gap-3">
-                <span className="text-4xl md:text-5xl font-bold text-gray-800">
-                  ৳{toBn(product.today)}
+                <span className="text-3xl md:text-4xl font-bold text-gray-800">
+                  {toBn(product.today)} <span className="text-lg font-medium">টাকা</span>
                 </span>
-                <span className={`text-lg font-semibold ${changeColor}`}>
+                <span className={`text-base font-semibold ${changeColor}`}>
                   {dir === "up" ? "▲" : dir === "down" ? "▼" : "—"} {toBn(pct)}%
                 </span>
               </div>
@@ -97,50 +104,55 @@ export default function ProductDetailClient({ slug }) {
             <div className="bg-green-50 rounded-xl p-4 text-center border border-green-100">
               <p className="text-xs text-green-700 mb-1">সর্বনিম্ন দাম</p>
               <p className="text-xl md:text-2xl font-bold text-green-700">
-                ৳{toBn(minPrice)}
+                {toBn(minPrice)} <span className="text-sm">টাকা</span>
               </p>
             </div>
             <div className="bg-blue-50 rounded-xl p-4 text-center border border-blue-100">
               <p className="text-xs text-blue-700 mb-1">গড় দাম</p>
               <p className="text-xl md:text-2xl font-bold text-blue-700">
-                ৳{toBn(avgPrice)}
+                {toBn(avgPrice)} <span className="text-sm">টাকা</span>
               </p>
             </div>
             <div className="bg-red-50 rounded-xl p-4 text-center border border-red-100">
               <p className="text-xs text-red-700 mb-1">সর্বোচ্চ দাম</p>
               <p className="text-xl md:text-2xl font-bold text-red-700">
-                ৳{toBn(maxPrice)}
+                {toBn(maxPrice)} <span className="text-sm">টাকা</span>
               </p>
             </div>
           </div>
         </div>
 
+        {/* Description */}
+        <div className="mt-6 pt-6 border-t border-gray-200">
+          <p className="text-gray-600 text-sm md:text-base">{product.description}</p>
+        </div>
+
         {/* Price History */}
-        <div className="mt-8 pt-8 border-t border-gray-100">
+        <div className="mt-6 pt-6 border-t border-gray-200">
           <h3 className="font-semibold text-gray-800 mb-4">দামের ইতিহাস</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <div className="bg-gray-50 rounded-xl p-4 text-center">
               <p className="text-xs text-gray-500 mb-1">গতকাল</p>
-              <p className="text-lg font-bold text-gray-800">৳{toBn(product.yesterday)}</p>
+              <p className="text-lg font-bold text-gray-800">{toBn(product.yesterday)} টাকা</p>
             </div>
             <div className="bg-gray-50 rounded-xl p-4 text-center">
               <p className="text-xs text-gray-500 mb-1">আজ</p>
-              <p className="text-lg font-bold text-dhaner-shobuj">৳{toBn(product.today)}</p>
+              <p className="text-lg font-bold text-dhaner-shobuj">{toBn(product.today)} টাকা</p>
             </div>
             <div className="bg-gray-50 rounded-xl p-4 text-center">
               <p className="text-xs text-gray-500 mb-1">গত সপ্তাহে</p>
-              <p className="text-lg font-bold text-gray-800">৳{toBn(product.lastWeek)}</p>
+              <p className="text-lg font-bold text-gray-800">{toBn(lastWeek)} টাকা</p>
             </div>
             <div className="bg-gray-50 rounded-xl p-4 text-center">
               <p className="text-xs text-gray-500 mb-1">গত মাসে</p>
-              <p className="text-lg font-bold text-gray-800">৳{toBn(product.lastMonth)}</p>
+              <p className="text-lg font-bold text-gray-800">{toBn(lastMonth)} টাকা</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Market-wise Prices */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-10">
+      <div className="bg-bazar-card rounded-2xl border border-gray-200 p-6 md:p-10">
         <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6">
           বাজারভিত্তিক আজকের দাম
         </h2>
@@ -176,10 +188,10 @@ export default function ProductDetailClient({ slug }) {
                       {market.division}
                     </td>
                     <td className="py-3 px-4 text-sm font-semibold text-green-600 text-right">
-                      ৳{toBn(market.min)}
+                      {toBn(market.min)} টাকা
                     </td>
                     <td className="py-3 px-4 text-sm font-semibold text-red-600 text-right">
-                      ৳{toBn(market.max)}
+                      {toBn(market.max)} টাকা
                     </td>
                   </tr>
                 ))}
@@ -206,7 +218,7 @@ export default function ProductDetailClient({ slug }) {
               <Link
                 key={cat.slug}
                 href={`/category/${cat.slug}`}
-                className="bg-white border border-gray-200 hover:border-dhaner-shobuj/30 px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-dhaner-shobuj transition-colors"
+                className="bg-bazar-card border border-gray-200 hover:border-dhaner-shobuj/30 px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-dhaner-shobuj transition-colors"
               >
                 {cat.icon} {cat.nameBn}
               </Link>
