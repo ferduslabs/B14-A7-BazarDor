@@ -17,31 +17,29 @@ export default function ProductCard({ product }) {
 
   return (
     <Link href={`/product/${product.slug}`}>
-      <div className="bg-bazar-card rounded-2xl border border-gray-200/60 hover:border-dhaner-shobuj/40 hover:shadow-md transition-all duration-300 p-4 group cursor-pointer h-full">
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex items-start gap-3">
-            <div className="text-3xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-              {product.image}
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 text-base leading-tight">
-                {product.nameBn}
-              </h3>
-              <p className="text-xs text-gray-500 mt-0.5">
-                {formatUnit(product.unit)}
-              </p>
-            </div>
+      <div className="bg-bazar-card rounded-2xl border border-gray-200 hover:border-dhaner-shobuj/40 hover:shadow-md transition-all duration-300 p-4 group cursor-pointer h-full">
+        <div className="flex items-start gap-3">
+          <div className="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-2xl bg-white/60 flex items-center justify-center text-2xl md:text-3xl group-hover:scale-110 transition-transform duration-300">
+            {product.image}
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-gray-800 text-base md:text-lg leading-tight truncate">
+              {product.nameBn}
+            </h3>
+            <p className="text-xs md:text-sm text-gray-500 mt-0.5">
+              {formatUnit(product.unit)}
+            </p>
           </div>
         </div>
 
-        <div className="flex items-end justify-between mt-3 pt-3 border-t border-gray-200/50">
+        <div className="flex items-end justify-between mt-4 pt-3 border-t border-gray-200/50">
           <div>
-            <p className="text-[10px] text-gray-400 mb-0.5">আজকের দাম</p>
-            <p className="text-lg font-bold text-gray-800 leading-tight">
-              ৳{toBn(product.today)}
+            <p className="text-xs text-gray-400 mb-1">আজকের দাম</p>
+            <p className="text-xl md:text-2xl font-bold text-gray-800 leading-none">
+              ৳{toBn(product.today)} <span className="text-base font-medium">টাকা</span>
             </p>
           </div>
-          <span className={`text-xs font-semibold px-2 py-1 rounded-lg ${changeBg}`}>
+          <span className={`text-xs font-semibold px-2.5 py-1.5 rounded-full ${changeBg} flex-shrink-0`}>
             {changeIcon} {toBn(pct)}%
           </span>
         </div>
