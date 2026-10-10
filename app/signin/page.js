@@ -133,11 +133,6 @@ function SignInContent() {
             </button>
           </form>
 
-          {/* Demo info */}
-          <div className="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-700">
-            <strong>ডেমো অ্যাকাউন্ট:</strong> demo@bazar.com / 123456
-          </div>
-
           {/* Divider */}
           <div className="flex items-center gap-4 my-6">
             <div className="flex-1 h-px bg-gray-200"></div>
