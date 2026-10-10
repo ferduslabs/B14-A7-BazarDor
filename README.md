@@ -1,132 +1,164 @@
-# 🛒 বাজার দর (Bazar Dor)
+# 🛒 Bazar Dor (বাজার দর)
 
-> বাংলাদেশের বাজার দর ট্র্যাকার — প্রতিদিনের পণ্যের দাম এক নজরে।
+> Bangladesh market price tracker — daily commodity prices at a glance.
 
-## 📋 পরিচিতি
+---
 
-বাজার দর একটি Next.js 14 দিয়ে তৈরি ওয়েব অ্যাপ যেখানে আপনি বাংলাদেশের বিভিন্ন বাজারের পণ্যের দাম দেখতে পারবেন। চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম-দুধ, মসলা — সব পণ্যের আজকের দাম, দামের পরিবর্তন, বাজারভিত্তিক তুলনা সব কিছু এখানে।
+## 📦 Repository & Live Site
 
-## ✨ প্রধান বৈশিষ্ট্য
+- **GitHub Repository:** [https://github.com/ferduslabs/B14-A7-BazarDor](https://github.com/ferduslabs/B14-A7-BazarDor)
+- **Live Site:** [https://ferduslabs.github.io/B14-A7-BazarDor/](https://ferduslabs.github.io/B14-A7-BazarDor/)
 
-- 🔥 **আজকের দামের ট্র্যাকার** — কোন পণ্যের দাম বাড়ছে, কোনটা কমছে
-- 📊 **বাজারভিত্তিক দামের তুলনা** — ৮টি বাজারের সর্বনিম্ন ও সর্বোচ্চ দাম
-- 📈 **দামের ইতিহাস** — গতকাল, গত সপ্তাহ, গত মাসের তুলনা
-- 🔐 **ব্যবহারকারী অ্যাকাউন্ট** — সাইন আপ, সাইন ইন, প্রোফাইল এডিট
-- 🔍 **ক্যাটাগরি অনুযায়ী ব্রাউজ** — ৮টি ক্যাটাগরিতে ৩৩টি পণ্য
-- 📱 **পূর্ণরূপে রেসপন্সিভ** — মোবাইল, ট্যাবলেট, ডেস্কটপ সবকিছুতে
-- 🇧🇩 **সম্পূর্ণ বাংলা ইন্টারফেস** — বাংলা ডিজিট, বাংলা লেখা
-- 🔄 **সর্ট ফাংশন** — দাম অনুযায়ী ছোট থেকে বড় বা বড় থেকে ছোট
-- ⚡ **স্কেলটন লোডিং** — ডেটা লোড হওয়ার আগে skeleton animation
-- 🔔 **টোস্ট নোটিফিকেশন** — সব অ্যাকশনে রিয়েলটাইম feedback
+---
 
-## 🛠️ ব্যবহৃত প্রযুক্তি
+## 📋 About
 
-| প্রযুক্তি | কাজ |
-|---------|-----|
-| Next.js 14 (App Router) | UI ও রাউটিং |
-| React 18 | ইন্টারেক্টিভ কম্পোনেন্ট |
-| Tailwind CSS | স্টাইলিং |
-| React Hot Toast | নোটিফিকেশন |
-| Lucide React | আইকন |
-| Context API | অথেনটিকেশন সিস্টেম |
-| SSG (Static Export) | ফাস্ট লোডিং |
+**Bazar Dor** is a Next.js 14 web app that tracks daily market prices of essential commodities in Bangladesh. From rice, lentils, and oil to vegetables, fish, meat, eggs, dairy, and spices — see today's prices, price changes, and market-wise comparisons all in one place.
 
-## 🚀 শুরু করুন
+Built with **Next.js App Router**, **Tailwind CSS**, and a **BetterAuth-style** authentication system. Fully responsive with a complete Bengali (Bangla) interface.
+
+---
+
+## ✨ Key Features
+
+1. 🔥 **Live Price Tracker** — See which prices are rising and falling each day
+2. 📊 **Market-wise Price Comparison** — Compare min/max prices across 8 different markets
+3. 📈 **Price History** — Compare with yesterday, last week, and last month
+4. 🔐 **User Authentication** — Sign up, sign in, and update your profile (email/password + Google + GitHub)
+5. 🔍 **Category Browsing** — Browse 33 products across 8 categories with sort options
+6. 📱 **Fully Responsive** — Works perfectly on mobile, tablet, and desktop
+7. 🇧🇩 **Complete Bengali Interface** — Bengali digits, Bengali text everywhere
+8. 🔄 **Sort Functionality** — Sort by price (low to high / high to low)
+9. ⚡ **Skeleton Loading** — Beautiful skeleton animations while data loads
+10. 🔔 **Toast Notifications** — Real-time feedback for every action
+11. 🏷️ **Price Ticker** — Animated marquee showing live price updates
+12. 🔒 **Protected Routes** — Product detail page requires login
+13. 📸 **Profile Picture** — Upload and manage your profile photo
+14. 🚀 **Static Export (SSG)** — Fast loading with pre-rendered pages
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|------------|---------|
+| Next.js 14 (App Router) | UI and routing |
+| React 18 | Interactive components |
+| Tailwind CSS | Styling and responsiveness |
+| React Hot Toast | Toast notifications |
+| Lucide React | Icon library |
+| Context API | Authentication state management |
+| SSG (Static Export) | Fast performance, GitHub Pages deployment |
+
+---
+
+## 🚀 Getting Started
 
 ```bash
-# ডিপেন্ডেন্সি ইনস্টল করুন
+# Install dependencies
 npm install
 
-# ডেভেলপমেন্ট সার্ভার চালান
+# Run development server
 npm run dev
 
-# প্রোডাকশন বিল্ড
+# Production build
 npm run build
 ```
 
-ব্রাউজারে [http://localhost:3000](http://localhost:3000) খুলুন।
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 📁 প্রজেক্ট স্ট্রাকচার
+---
+
+## 📁 Project Structure
 
 ```
 bazardor/
 ├── app/
-│   ├── layout.js              # রুট লেআউট
-│   ├── page.js                # হোম পেজ
-│   ├── globals.css            # গ্লোবাল স্টাইল
-│   ├── not-found.js           # 404 পেজ
+│   ├── layout.js              # Root layout
+│   ├── page.js                # Home page
+│   ├── globals.css            # Global styles
+│   ├── not-found.js           # 404 page
 │   ├── category/
 │   │   └── [slug]/
-│   │       ├── page.js        # ক্যাটাগরি পেজ (SSG)
+│   │       ├── page.js        # Category page (SSG)
 │   │       └── CategoryClient.js
 │   ├── product/
 │   │   └── [slug]/
-│   │       ├── page.js        # পণ্যের বিস্তারিত (প্রোটেক্টেড)
+│   │       ├── page.js        # Product detail (protected)
 │   │       └── ProductDetailClient.js
-│   ├── signin/page.js         # সাইন ইন
-│   ├── signup/page.js         # সাইন আপ
-│   ├── profile/page.js        # প্রোফাইল
-│   └── update-profile/page.js # প্রোফাইল এডিট
+│   ├── signin/page.js         # Sign in
+│   ├── signup/page.js         # Sign up
+│   ├── profile/page.js        # Profile page
+│   └── update-profile/page.js # Update profile
 ├── components/
-│   ├── Navbar.js              # নেভবার + ক্যাটাগরি মেনু
-│   ├── Footer.js              # ফুটার
-│   ├── Hero.js                # হিরো সেকশন
-│   ├── ProductCard.js         # পণ্যের কার্ড
-│   ├── PriceTicker.js         # দামের মার্কি টিকার
-│   ├── SkeletonCard.js        # লোডিং স্কেলটন
-│   └── AuthGuard.js           # প্রোটেক্টেড রাউট গার্ড
+│   ├── Navbar.js              # Navbar + category menu
+│   ├── Footer.js              # Footer
+│   ├── Hero.js                # Hero section
+│   ├── ProductCard.js         # Product card
+│   ├── PriceTicker.js         # Price marquee ticker
+│   ├── SkeletonCard.js        # Loading skeleton
+│   └── AuthGuard.js           # Protected route guard
 ├── lib/
-│   ├── bangla.js              # বাংলা ডিজিট কনভার্টার
-│   ├── fallback-data.js       # ফলব্যাক ডেটা (৩৩ পণ্য)
-│   ├── fetchData.js           # 3-টায়ার API ফলব্যাক
-│   └── auth-context.js        # অথেনটিকেশন কনটেক্সট
-├── auth.js                    # অথ কনফিগ
+│   ├── bangla.js              # Bengali digit converter
+│   ├── fallback-data.js       # Fallback data (33 products)
+│   ├── fetchData.js           # 3-tier API fallback
+│   └── auth-context.js        # Authentication context
 ├── next.config.mjs
 ├── tailwind.config.js
 └── README.md
 ```
 
-## 📦 API ডেটা
+---
 
-- **প্রধান API:** `https://api.api-store.workers.dev/api/bazardor`
-- **বিকল্প API:** `https://api.abcz.workers.dev/api/bazardor`
+## 📦 API Data
 
-ডেটা লোড করার সিস্টেম:
-1. প্রধান API থেকে ডেটা আনার চেষ্টা
-2. ব্যর্থ হলে বিকল্প API
-3. তারপরও ব্যর্থ হলে লোকাল ফলব্যাক ডেটা
+- **Primary API:** `https://api.api-store.workers.dev/api/bazardor`
+- **Alternative API:** `https://api.abcz.workers.dev/api/bazardor`
 
-## 📚 ক্যাটাগরি সমূহ
+Data loading strategy:
+1. Try primary API first
+2. Fall back to alternative API
+3. Use local fallback data if both fail
 
-| ক্যাটাগরি | আইকন | পণ্য সংখ্যা |
-|---------|------|-----------|
-| চাল | 🍚 | ৪ |
-| ডাল | 🫘 | ৪ |
-| তেল | 🫙 | ৩ |
-| সবজি | 🥬 | ৫ |
-| মাছ | 🐟 | ৫ |
-| মাংস | 🍗 | ৪ |
-| ডিম-দুধ | 🥛 | ৪ |
-| মসলা | 🌶️ | ৪ |
-| **মোট** | | **৩৩** |
+---
 
-## 🎨 কালার স্কিম
+## 📚 Categories
 
-- **ব্যাকগ্রাউন্ড:** সাদা (#ffffff)
-- **ক্যার্ড:** হালকা সবুজ (#f8faf7)
-- **প্রাইমারি:** ধানের সবুজ (#059669)
-- **দাম বাড়লে:** লাল (#dc2626)
-- **দাম কমলে:** সবুজ (#16a34a)
-- **অপরিবর্তিত:** ধূসর (#6b7280)
+| Category | Icon | Products |
+|----------|------|----------|
+| Rice (চাল) | 🍚 | 4 |
+| Lentils (ডাল) | 🫘 | 4 |
+| Oil (তেল) | 🫙 | 3 |
+| Vegetables (সবজি) | 🥬 | 5 |
+| Fish (মাছ) | 🐟 | 5 |
+| Meat (মাংস) | 🍗 | 4 |
+| Eggs & Dairy (ডিম-দুধ) | 🥛 | 4 |
+| Spices (মসলা) | 🌶️ | 4 |
+| **Total** | | **33** |
 
-## 🔐 অথেনটিকেশন
+---
 
-- ইমেইল + পাসওয়ার্ড দিয়ে রেজিস্ট্রেশন ও লগইন
-- Google ও GitHub দিয়ে সোশ্যাল লগইন
-- প্রোটেক্টেড রাউট (পণ্যের বিস্তারিত, প্রোফাইল)
-- প্রোফাইল আপডেট ফিচার
-- localStorage-এ ডেটা সংরক্ষণ
+## 🎨 Color Scheme
 
-## 📄 লাইসেন্স
+- **Background:** White (#ffffff)
+- **Card:** Light green (#f8faf7)
+- **Primary:** Emerald green (#059669)
+- **Price Up:** Red (#dc2626)
+- **Price Down:** Green (#16a34a)
+- **Neutral:** Gray (#6b7280)
+
+---
+
+## 🔐 Authentication
+
+- Register and log in with email + password
+- Social login with Google and GitHub
+- Protected routes (product details, profile)
+- Profile update feature (name + profile picture)
+- Data stored in localStorage
+
+---
+
+## 📄 License
 
 ISC
