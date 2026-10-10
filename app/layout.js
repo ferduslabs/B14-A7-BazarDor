@@ -28,14 +28,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="bn">
-      <body className="min-h-screen flex flex-col bg-bazar-bg">
+      <body className="min-h-screen bg-bazar-bg">
         <AuthProvider>
-          {/* Sticky header: navbar + ticker stay on top */}
-          <div className="sticky top-0 z-50 bg-bazar-bg/95 backdrop-blur-sm border-b border-gray-200/60">
+          {/* Fixed header: navbar + ticker always on top */}
+          <div className="fixed top-0 left-0 right-0 z-50 bg-bazar-bg/95 backdrop-blur-md border-b border-gray-200/60 shadow-sm">
             <Navbar />
             <PriceTicker products={products} />
           </div>
-          <main className="flex-1">{children}</main>
+
+          {/* Spacer to push content below fixed header */}
+          <div className="h-[120px] md:h-[136px]"></div>
+
+          <main>{children}</main>
           <Footer />
           <Toaster
             position="top-right"
