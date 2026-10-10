@@ -7,6 +7,7 @@ import { useAuth } from "@/lib/auth-context";
 import { formatBengaliDate } from "@/lib/bangla";
 import { categories } from "@/lib/fallback-data";
 import { Menu, X, User, LogOut, Settings } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -24,8 +25,13 @@ export default function Navbar() {
   };
 
   const handleSignOut = async () => {
-    await signOut();
-    setProfileOpen(false);
+    try {
+      await signOut();
+      toast.success("সফলভাবে সাইন আউট হয়েছে!");
+      setProfileOpen(false);
+    } catch (err) {
+      toast.error("সাইন আউট ব্যর্থ হয়েছে");
+    }
   };
 
   return (
