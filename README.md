@@ -15,7 +15,7 @@
 
 **Bazar Dor** is a Next.js 14 web app that tracks daily market prices of essential commodities in Bangladesh. From rice, lentils, and oil to vegetables, fish, meat, eggs, dairy, and spices — see today's prices, price changes, and market-wise comparisons all in one place.
 
-Built with **Next.js App Router**, **Tailwind CSS**, and a **BetterAuth-style** authentication system. Fully responsive with a complete Bengali (Bangla) interface.
+Built with **Next.js App Router**, **Tailwind CSS + DaisyUI**, **JavaScript**, and **BetterAuth** for authentication. Fully responsive with a complete Bengali (Bangla) interface.
 
 ---
 
@@ -42,9 +42,12 @@ Built with **Next.js App Router**, **Tailwind CSS**, and a **BetterAuth-style** 
 
 | Technology | Purpose |
 |------------|---------|
-| Next.js 14 (App Router) | UI and routing |
+| Next.js 14 (App Router) | UI and page navigation |
 | React 18 | Interactive components |
+| JavaScript | Programming language |
 | Tailwind CSS | Styling and responsiveness |
+| DaisyUI | Component library |
+| BetterAuth | Authentication (email/password + Google + GitHub) |
 | React Hot Toast | Toast notifications |
 | Lucide React | Icon library |
 | Context API | Authentication state management |
@@ -102,7 +105,8 @@ bazardor/
 │   ├── bangla.js              # Bengali digit converter
 │   ├── fallback-data.js       # Fallback data (33 products)
 │   ├── fetchData.js           # 3-tier API fallback
-│   └── auth-context.js        # Authentication context
+│   ├── auth.js                # BetterAuth configuration
+│   └── auth-context.js        # Authentication context (BetterAuth)
 ├── next.config.mjs
 ├── tailwind.config.js
 └── README.md
@@ -151,11 +155,12 @@ Data loading strategy:
 
 ## 🔐 Authentication
 
+- **BetterAuth** integration for authentication
 - Register and log in with email + password
 - Social login with Google and GitHub
 - Protected routes (product details, profile)
 - Profile update feature (name + profile picture)
-- Data stored in localStorage
+- Toast notifications for auth actions
 
 ---
 
