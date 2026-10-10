@@ -5,10 +5,12 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 import toast from "react-hot-toast";
+import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 function SignInContent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const { signIn, signInWithProvider, user } = useAuth();
   const router = useRouter();
@@ -53,65 +55,102 @@ function SignInContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f8f2] flex flex-col items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
+        {/* Logo + Title */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
-            সাইন ইন করুন
+          <div className="text-4xl mb-4">🛒</div>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            স্বাগতম!
           </h1>
-          <p className="text-gray-500 text-base">
+          <p className="text-gray-500 text-sm md:text-base">
             আপনার অ্যাকাউন্টে প্রবেশ করুন
           </p>
         </div>
 
-        <div className="bg-[#f8f8f2] border border-gray-300 rounded-2xl p-6 md:p-8 shadow-sm">
-          <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Form Card */}
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                 ইমেইল
               </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all text-gray-800 placeholder-gray-400"
-              />
+              <div className="relative">
+                <Mail size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="আপনার ইমেইল"
+                  className="w-full pl-11 pr-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all text-gray-800 placeholder-gray-400 text-sm"
+                />
+              </div>
             </div>
 
+            {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                 পাসওয়ার্ড
               </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="আপনার পাসওয়ার্ড"
-                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all text-gray-800 placeholder-gray-400"
-              />
+              <div className="relative">
+                <Lock size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  type={showPass ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="আপনার পাসওয়ার্ড"
+                  className="w-full pl-11 pr-11 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all text-gray-800 placeholder-gray-400 text-sm"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPass(!showPass)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
             </div>
 
+            {/* Forgot + Remember */}
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex items-center gap-2 text-gray-600 cursor-pointer">
+                <input type="checkbox" className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500" />
+                মনে রাখুন
+              </label>
+              <Link href="#" className="text-emerald-600 hover:text-emerald-700 font-medium">
+                পাসওয়ার্ড ভুলে গেছেন?
+              </Link>
+            </div>
+
+            {/* Login Button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-emerald-900/30 border-b-4 border-emerald-800 hover:border-emerald-900 active:border-b-2 active:translate-y-0.5"
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-emerald-900/20 border-b-4 border-emerald-800 hover:border-emerald-900 active:border-b-2 active:translate-y-0.5 text-base"
             >
-              {loading ? "লোড হচ্ছে..." : "সাইন ইন করুন"}
+              {loading ? "লোড হচ্ছে..." : "লগইন"}
             </button>
           </form>
 
-          <div className="flex items-center gap-4 my-6">
-            <div className="flex-1 h-px bg-gray-300"></div>
-            <span className="text-sm text-gray-500">অথবা</span>
-            <div className="flex-1 h-px bg-gray-300"></div>
+          {/* Demo info */}
+          <div className="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-700">
+            <strong>ডেমো অ্যাকাউন্ট:</strong> demo@bazar.com / 123456
           </div>
 
-          <div className="flex gap-3">
+          {/* Divider */}
+          <div className="flex items-center gap-4 my-6">
+            <div className="flex-1 h-px bg-gray-200"></div>
+            <span className="text-xs text-gray-400 font-medium">অথবা</span>
+            <div className="flex-1 h-px bg-gray-200"></div>
+          </div>
+
+          {/* Social Buttons */}
+          <div className="space-y-3">
             <button
               onClick={() => handleSocialLogin("google")}
               disabled={loading}
-              className="flex-1 flex items-center justify-center gap-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-2.5 rounded-xl transition-colors disabled:opacity-50 text-sm"
+              className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-3 rounded-xl transition-colors disabled:opacity-50 text-sm"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -124,7 +163,7 @@ function SignInContent() {
             <button
               onClick={() => handleSocialLogin("github")}
               disabled={loading}
-              className="flex-1 flex items-center justify-center gap-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-2.5 rounded-xl transition-colors disabled:opacity-50 text-sm"
+              className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-3 rounded-xl transition-colors disabled:opacity-50 text-sm"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -133,26 +172,25 @@ function SignInContent() {
             </button>
           </div>
 
+          {/* Register link */}
           <p className="text-center text-sm text-gray-600 mt-6">
             অ্যাকাউন্ট নেই?{" "}
             <Link
               href={`/signup?redirect=${encodeURIComponent(redirect)}`}
               className="text-emerald-600 hover:text-emerald-700 font-semibold"
             >
-              সাইন আপ করুন
+              রেজিস্ট্রেশন করুন
             </Link>
           </p>
         </div>
 
+        {/* Home link */}
         <div className="text-center mt-8">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-700 text-sm transition-colors"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            হোম পেজে ফিরে যান
+            ← হোম পেজে ফিরে যান
           </Link>
         </div>
       </div>
@@ -162,7 +200,7 @@ function SignInContent() {
 
 export default function SignInPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#f8f8f2] flex items-center justify-center text-gray-500">লোড হচ্ছে...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-white flex items-center justify-center text-gray-500">লোড হচ্ছে...</div>}>
       <SignInContent />
     </Suspense>
   );
