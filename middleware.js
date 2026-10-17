@@ -15,8 +15,10 @@ export function middleware(request) {
     return NextResponse.next();
   }
 
-  // BetterAuth session cookie check
-  const sessionToken = request.cookies.get("better-auth.session_token");
+  // BetterAuth session cookie check (dev = "better-auth.session_token", prod HTTPS = "__Secure-better-auth.session_token")
+  const sessionToken =
+    request.cookies.get("better-auth.session_token") ||
+    request.cookies.get("__Secure-better-auth.session_token");
 
   if (!sessionToken) {
     // Redirect to signin page
