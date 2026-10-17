@@ -1,169 +1,180 @@
-# 🛒 Bazar Dor (বাজার দর)
+# Bazar Dor (বাজার দর)
 
-> Bangladesh market price tracker — daily commodity prices at a glance.
+> বাংলাদেশের নিত্যপ্রয়োজনীয় পণ্যের দৈনিক বাজার দর — এক জায়গায়।
 
----
-
-## 📦 Repository & Live Site
-
-- **GitHub Repository:** [https://github.com/ferduslabs/B14-A7-BazarDor](https://github.com/ferduslabs/B14-A7-BazarDor)
-- **Live Site:** [https://ferduslabs.github.io/B14-A7-BazarDor/](https://ferduslabs.github.io/B14-A7-BazarDor/)
+Bazar Dor is a Next.js 14 web application for tracking daily market prices of
+essential commodities in Bangladesh. Users can browse products by category,
+compare prices across markets, and create an account to view product details.
+The whole interface is in Bengali (Bangla).
 
 ---
 
-## 📋 About
+## Features
 
-**Bazar Dor** is a Next.js 14 web app that tracks daily market prices of essential commodities in Bangladesh. From rice, lentils, and oil to vegetables, fish, meat, eggs, dairy, and spices — see today's prices, price changes, and market-wise comparisons all in one place.
-
-Built with **Next.js App Router**, **Tailwind CSS + DaisyUI**, **JavaScript**, and **BetterAuth** for authentication. Fully responsive with a complete Bengali (Bangla) interface.
-
----
-
-## ✨ Key Features
-
-1. 🔥 **Live Price Tracker** — See which prices are rising and falling each day
-2. 📊 **Market-wise Price Comparison** — Compare min/max prices across 8 different markets
-3. 📈 **Price History** — Compare with yesterday, last week, and last month
-4. 🔐 **User Authentication** — Sign up, sign in, and update your profile (email/password + Google + GitHub)
-5. 🔍 **Category Browsing** — Browse 33 products across 8 categories with sort options
-6. 📱 **Fully Responsive** — Works perfectly on mobile, tablet, and desktop
-7. 🇧🇩 **Complete Bengali Interface** — Bengali digits, Bengali text everywhere
-8. 🔄 **Sort Functionality** — Sort by price (low to high / high to low)
-9. ⚡ **Skeleton Loading** — Beautiful skeleton animations while data loads
-10. 🔔 **Toast Notifications** — Real-time feedback for every action
-11. 🏷️ **Price Ticker** — Animated marquee showing live price updates
-12. 🔒 **Protected Routes** — Product detail page requires login
-13. 📸 **Profile Picture** — Upload and manage your profile photo
-14. 🚀 **Static Export (SSG)** — Fast loading with pre-rendered pages
+1. Daily price tracker with up/down price indicators
+2. Price comparison across multiple markets
+3. 33 products organized in 8 categories
+4. Sort products by price (low to high / high to low)
+5. User sign up and sign in with email and password
+6. Social login with Google and GitHub
+7. Profile page and profile update (name + picture)
+8. Protected pages (login is required to view them)
+9. Fully responsive design for mobile, tablet and desktop
+10. Skeleton loading, toast notifications and an animated price ticker
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
-| Technology | Purpose |
-|------------|---------|
-| Next.js 14 (App Router) | UI and page navigation |
-| React 18 | Interactive components |
+| Technology | What it is used for |
+|------------|---------------------|
+| Next.js 14 (App Router) | Pages, routing and server-side API routes |
+| React 18 | Interactive UI components |
 | JavaScript | Programming language |
-| Tailwind CSS | Styling and responsiveness |
-| DaisyUI | Component library |
-| BetterAuth | Authentication (email/password + Google + GitHub) |
-| React Hot Toast | Toast notifications |
-| Lucide React | Icon library |
-| Context API | Authentication state management |
-| SSG (Static Export) | Fast performance, GitHub Pages deployment |
+| Tailwind CSS + DaisyUI | Styling |
+| Better Auth | Authentication (email/password, Google, GitHub) |
+| MongoDB Atlas | Cloud database where users and sessions are stored |
+| React Hot Toast | Pop-up notifications |
+| Lucide React | Icons |
+| Context API | Sharing the logged-in user across the app |
 
 ---
 
-## 🚀 Getting Started
+## How to Run This Project
+
+1. Install [Node.js](https://nodejs.org) (version 18 or later).
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Create a file named `.env.local` in the project root and add the following
+   environment variables:
+
+   ```bash
+   BETTER_AUTH_SECRET="any-long-random-secret"
+   BETTER_AUTH_URL="http://localhost:3000"
+   MONGODB_URI="your-mongodb-atlas-connection-string"
+   GOOGLE_CLIENT_ID="your-google-oauth-client-id"
+   GOOGLE_CLIENT_SECRET="your-google-oauth-client-secret"
+   GITHUB_CLIENT_ID="your-github-oauth-client-id"
+   GITHUB_CLIENT_SECRET="your-github-oauth-client-secret"
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open `http://localhost:3000` in your browser.
+
+Other useful commands:
 
 ```bash
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Production build
-npm run build
+npm run build   # create a production build
+npm run start   # run the production build
 ```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 📁 Project Structure
+## Authentication and Database
+
+Authentication is handled by **Better Auth**.
+
+- When a user signs up, their account is saved in **MongoDB Atlas** (a cloud
+  MongoDB database), not in the browser.
+- Better Auth automatically creates and manages these database collections:
+  - `user` — registered users (name, email, password hash, image)
+  - `session` — active login sessions
+  - `account` — linked Google/GitHub login accounts
+  - `verification` — email verification records
+- After login, the user stays logged in using a secure session cookie.
+- Server-side route protection is done with Next.js middleware, and protected
+  pages are also checked on the client with an auth guard component.
+
+Key files:
+
+| File | Responsibility |
+|------|----------------|
+| `lib/auth.js` | Server-side Better Auth configuration and MongoDB connection |
+| `lib/auth-client.js` | Client-side auth helper used by the browser |
+| `lib/auth-context.js` | React context: sign up, sign in, sign out, current user |
+| `app/api/auth/[...all]/route.js` | Auth API endpoint (handles all Better Auth requests) |
+| `middleware.js` | Redirects guests away from protected pages |
+| `components/AuthGuard.js` | Client-side guard for protected pages |
+
+---
+
+## Project Structure
 
 ```
 bazardor/
 ├── app/
-│   ├── layout.js              # Root layout
-│   ├── page.js                # Home page
-│   ├── globals.css            # Global styles
-│   ├── not-found.js           # 404 page
-│   ├── category/
-│   │   └── [slug]/
-│   │       ├── page.js        # Category page (SSG)
-│   │       └── CategoryClient.js
-│   ├── product/
-│   │   └── [slug]/
-│   │       ├── page.js        # Product detail (protected)
-│   │       └── ProductDetailClient.js
-│   ├── signin/page.js         # Sign in
-│   ├── signup/page.js         # Sign up
-│   ├── profile/page.js        # Profile page
-│   └── update-profile/page.js # Update profile
+│   ├── layout.js                  # Root layout
+│   ├── page.js                    # Home page
+│   ├── globals.css                # Global styles
+│   ├── not-found.js               # 404 page
+│   ├── icon.svg                   # Site favicon
+│   ├── api/auth/[...all]/route.js # Better Auth API handler
+│   ├── category/[slug]/           # Category listing page
+│   ├── product/[slug]/            # Product detail page (protected)
+│   ├── signin/page.js             # Sign in page
+│   ├── signup/page.js             # Sign up page
+│   ├── profile/page.js            # Profile page (protected)
+│   └── update-profile/page.js     # Edit profile page (protected)
 ├── components/
-│   ├── Navbar.js              # Navbar + category menu
-│   ├── Footer.js              # Footer
-│   ├── Hero.js                # Hero section
-│   ├── ProductCard.js         # Product card
-│   ├── PriceTicker.js         # Price marquee ticker
-│   ├── SkeletonCard.js        # Loading skeleton
-│   └── AuthGuard.js           # Protected route guard
+│   ├── Navbar.js                  # Top navigation bar
+│   ├── Footer.js                  # Footer
+│   ├── Hero.js                    # Hero section
+│   ├── ProductCard.js             # Product card
+│   ├── PriceTicker.js             # Animated price ticker
+│   ├── SkeletonCard.js            # Loading skeleton
+│   └── AuthGuard.js               # Login guard wrapper
 ├── lib/
-│   ├── bangla.js              # Bengali digit converter
-│   ├── fallback-data.js       # Fallback data (33 products)
-│   ├── fetchData.js           # 3-tier API fallback
-│   ├── auth.js                # BetterAuth configuration
-│   └── auth-context.js        # Authentication context (BetterAuth)
+│   ├── bangla.js                  # Bengali digit/date helpers
+│   ├── fallback-data.js           # Local backup data (33 products)
+│   ├── fetchData.js               # API requests with backup fallback
+│   ├── auth.js                    # Better Auth server config
+│   ├── auth-client.js             # Better Auth client
+│   └── auth-context.js            # Auth context provider and useAuth hook
+├── public/
+│   └── logo.svg                   # Site logo
+├── middleware.js                  # Server-side protected routes
 ├── next.config.mjs
 ├── tailwind.config.js
-└── README.md
+└── package.json
 ```
 
 ---
 
-## 📦 API Data
+## Categories
 
-- **Primary API:** `https://api.api-store.workers.dev/api/bazardor`
-- **Alternative API:** `https://api.abcz.workers.dev/api/bazardor`
-
-Data loading strategy:
-1. Try primary API first
-2. Fall back to alternative API
-3. Use local fallback data if both fail
-
----
-
-## 📚 Categories
-
-| Category | Icon | Products |
-|----------|------|----------|
-| Rice (চাল) | 🍚 | 4 |
-| Lentils (ডাল) | 🫘 | 4 |
-| Oil (তেল) | 🫙 | 3 |
-| Vegetables (সবজি) | 🥬 | 5 |
-| Fish (মাছ) | 🐟 | 5 |
-| Meat (মাংস) | 🍗 | 4 |
-| Eggs & Dairy (ডিম-দুধ) | 🥛 | 4 |
-| Spices (মসলা) | 🌶️ | 4 |
+| Category (English) | Bengali | Products |
+|--------------------|--------|----------|
+| Rice | চাল | 4 |
+| Lentils | ডাল | 4 |
+| Oil | তেল | 3 |
+| Vegetables | সবজি | 5 |
+| Fish | মাছ | 5 |
+| Meat | মাংস | 4 |
+| Eggs & Dairy | ডিম-দুধ | 4 |
+| Spices | মসলা | 4 |
 | **Total** | | **33** |
 
 ---
 
-## 🎨 Color Scheme
+## Color Scheme
 
-- **Background:** White (#ffffff)
-- **Card:** Light green (#f8faf7)
-- **Primary:** Emerald green (#059669)
-- **Price Up:** Red (#dc2626)
-- **Price Down:** Green (#16a34a)
-- **Neutral:** Gray (#6b7280)
-
----
-
-## 🔐 Authentication
-
-- **BetterAuth** integration for authentication
-- Register and log in with email + password
-- Social login with Google and GitHub
-- Protected routes (product details, profile)
-- Profile update feature (name + profile picture)
-- Toast notifications for auth actions
+- Background: White `#ffffff`
+- Card: Light green `#f8faf7`
+- Primary: Emerald green `#059669`
+- Price up: Red `#dc2626`
+- Price down: Green `#16a34a`
 
 ---
 
-## 📄 License
+## License
 
 ISC

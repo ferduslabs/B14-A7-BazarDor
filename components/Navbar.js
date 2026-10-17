@@ -41,7 +41,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-3xl">🛒</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.svg"
+              alt="বাজার দর"
+              className="w-9 h-9 md:w-10 md:h-10 rounded-[10px] shadow-sm"
+            />
             <div>
               <h1 className="text-xl md:text-2xl font-bold text-gray-800">
                 বাজার দর

@@ -59,7 +59,14 @@ function SignInContent() {
       <div className="w-full max-w-md">
         {/* Logo + Title */}
         <div className="text-center mb-6 sm:mb-8">
-          <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">🛒</div>
+          <div className="mb-3 sm:mb-4 flex justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.svg"
+              alt="বাজার দর"
+              className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl shadow-md"
+            />
+          </div>
           <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1.5 sm:mb-2">
             স্বাগতম!
           </h1>
